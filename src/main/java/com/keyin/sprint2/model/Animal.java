@@ -1,7 +1,9 @@
 package com.keyin.sprint2.model;
-
+@Entity
 public class Animal {
-    private int animal_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long animal_id;
     private String species;
     private String animalName;
     private String animalColor;
@@ -10,7 +12,7 @@ public class Animal {
     public Animal() {
     }
 
-    public Animal(int animal_id, String species, String animalName, String animalColor, String animalOrigin) {
+    public Animal(long animal_id, String species, String animalName, String animalColor, String animalOrigin) {
         this.animal_id = animal_id;
         this.species = species;
         this.animalName = animalName;
@@ -20,11 +22,11 @@ public class Animal {
 
 
 
-    public int getAnimal_id() {
+    public long getAnimal_id() {
         return animal_id;
     }
 
-    public void setAnimal_id(int animal_id) {
+    public void setAnimal_id(long animal_id) {
         this.animal_id = animal_id;
     }
 

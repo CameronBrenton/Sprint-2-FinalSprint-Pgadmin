@@ -8,9 +8,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "animal", path = "animal")
-public interface AnimalRepo extends PagingAndSortingRepository<Animal, Long> {{
+public interface AnimalRepo extends PagingAndSortingRepository<Animal, Long> {
 
-        List<Animal> findByLastName(@Param("animalName") String animalName);
+        List<Animal> findByAnimalName(@Param("species") String species);
 
-    }
 }

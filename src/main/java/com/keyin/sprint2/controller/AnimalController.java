@@ -18,7 +18,7 @@ public class AnimalController {
     @Autowired
     AnimalRepo animalRepository;
 
-    // Get all People
+    // Get all Animals
     @GetMapping("/animal")
     public ResponseEntity<List<Animal>> getAllAnimals(@RequestParam(required = false) String animalName) {
         try {

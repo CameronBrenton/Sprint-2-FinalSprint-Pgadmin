@@ -1,5 +1,6 @@
 package com.keyin.sprint2.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long animal_id;
+
     private String species;
     private String animalName;
     private String animalColor;

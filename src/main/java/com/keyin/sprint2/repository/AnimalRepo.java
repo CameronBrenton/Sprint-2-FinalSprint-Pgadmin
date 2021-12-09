@@ -10,6 +10,11 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "animal", path = "animal")
 public interface AnimalRepo extends PagingAndSortingRepository<Animal, Long> {
 
-        List<Animal> findByAnimalName(@Param("species") String species);
+        List<Animal> findByAnimalName(@Param("animalName") String animalName);
+
+//        List<Animal> findByAnimal_id(@Param("animal_id") String animal_id);
+//        List<Animal> findBySpecies(@Param("species") String species);
+//        List<Animal> findByAnimalColor(@Param("animalColor") String animalColor);
+//        List<Animal> findByAnimalOrigin(@Param("animalOrigin") String animalOrigin);
 
 }

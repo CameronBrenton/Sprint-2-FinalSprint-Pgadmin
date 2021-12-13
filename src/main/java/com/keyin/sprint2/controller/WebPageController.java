@@ -1,20 +1,45 @@
 package com.keyin.sprint2.controller;
 
-import com.keyin.sprint2.model.Webpage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+// Front-end webpage routes for the user
 @Controller
 public class WebPageController {
-    @Autowired
-    private Webpage webpage;
 
-    @GetMapping(path = "/message")
-    @ResponseBody
-    public String message() {
+    @GetMapping(path = "/logIn")
+    public String getLogInPage() {
 
-        return webpage.get();
+        return "logIn.html";
+    }
+
+    @GetMapping(path = "/logout")
+    public String getLogOutPage() {
+
+        return "logout.html";
+    }
+
+    @GetMapping(path = "/search")
+    public String getSearchPage() {
+
+        return "search.html";
+    }
+
+    @GetMapping(path = "/signup")
+    public String getSignupPage() {
+
+        return "signup.html";
+    }
+
+    @GetMapping(path = "/results")
+    public String getResultsPage() {
+
+        return "results.html";
+    }
+
+    @GetMapping(path = "/error")
+    public String getErrorPage() {
+
+        return "error.html";
     }
 }

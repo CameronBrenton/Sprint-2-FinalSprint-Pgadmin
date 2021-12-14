@@ -9,14 +9,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 // Front-end webpage routes for the user
 @Controller
 public class MainController {
     private AnimalController animalController;
-    private AnimalRepo animalRepo;
+    private AnimalRepo animalRepository;
 
     // Get Mappings
     @GetMapping(path = "/login")
@@ -38,8 +40,16 @@ public class MainController {
         model.addAttribute("search", search);
         List<String> databaseList = Arrays.asList("PgAdmin(SQL)", "MongoDB(NoSQL)", "Both");
         model.addAttribute("databaseList", databaseList);
-        //List<Animal> listAnimals =  animalRepo.findAll();
-        //model.addAttribute("listAnimals", listAnimals);
+        List<Animal> listAnimals = new ArrayList<Animal>();
+        animalRepository.findAll().forEach(listAnimals::add);
+//        List<Animal> listAnimals = null;
+//        try{
+//            listAnimals = animalRepository.findAllAnimals();
+//        }catch(Exception e){
+//            System.out.println(e);
+//        }
+        model.addAttribute("listAnimals", listAnimals);
+        System.out.println("#######" + listAnimals);
         return "search";
     }
 
@@ -50,18 +60,19 @@ public class MainController {
     }
 
     @GetMapping(path = "/searchtest")
-    public String showSearchFormTest(Model model, @RequestParam String animalName) {
-        //Iterable<Animal> listAnimals = animalRepo.findAll();
-        ResponseEntity<List<Animal>> listAnimals = animalController.getAllAnimals(animalName);
+    public String showSearchFormTest(Model model) {
+        Iterable<Animal> listAnimals = null;
+        try{
+            listAnimals = animalRepository.findAll();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
         model.addAttribute("listAnimals", listAnimals);
-        System.out.println(listAnimals);
-        return "index";
+        System.out.println("#######" + listAnimals);
+        return "search";
     }
 
-    @GetMapping(value = "/searchtest2")
-    public List<Animal> getResults() {
-        return animalRepo.findAll();
-    }
 
     // Signup
     @GetMapping(path = "/signup")

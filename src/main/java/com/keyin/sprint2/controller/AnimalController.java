@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:8081")
-@Controller
+@RestController
 @RequestMapping("/api")
 public class AnimalController {
 
@@ -45,7 +45,7 @@ public class AnimalController {
 
     @GetMapping("/animal/{animal_id}")
     public ResponseEntity<Animal> getAnimalsByAnimal_Id(@PathVariable("animal_id") long animal_id) {
-        Optional<Animal> animalData =animalRepository.findById(animal_id);
+        Optional<Animal> animalData = animalRepository.findById(animal_id);
         if (animalData.isPresent()) {
             return new ResponseEntity<>(animalData.get(), HttpStatus.OK);
         } else {

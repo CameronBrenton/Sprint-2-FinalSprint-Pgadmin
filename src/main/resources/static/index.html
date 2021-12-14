@@ -1,28 +1,17 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<title>Home Page</title>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
 
     <title>Sign In</title>
 </head>
-
-
 <body>
-
-
-<form method="POST" action="/signup" th:action="@{/logInUser}">
+<form method="POST" action="/loginUser" th:action="@{/logInUser}">
     <input type="email" name=email placeholder="email">
     <input type="password" name=password placeholder="password">
     <button type="submit">Sign In</button>
 </form>
-
-
-
-
-
-
 </body>
-
-
 </html>

@@ -7,13 +7,10 @@ import com.keyin.sprint2.repository.AnimalRepo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 // Front-end webpage routes for the user
 @Controller
@@ -53,13 +50,17 @@ public class MainController {
     }
 
     @GetMapping(path = "/searchtest")
-    public String showSearchFormTest(Model model) {
-        Iterable<Animal> listAnimals =  animalRepo.findAll();
+    public String showSearchFormTest(Model model, @RequestParam String animalName) {
+        //Iterable<Animal> listAnimals = animalRepo.findAll();
+        ResponseEntity<List<Animal>> listAnimals = animalController.getAllAnimals(animalName);
         model.addAttribute("listAnimals", listAnimals);
-        for (Animal animal : listAnimals){
-            System.out.println(listAnimals);
-        }
+        System.out.println(listAnimals);
         return "index";
+    }
+
+    @GetMapping(value = "/searchtest2")
+    public List<Animal> getResults() {
+        return animalRepo.findAll();
     }
 
     // Signup

@@ -4,6 +4,7 @@ import com.keyin.sprint2.model.Animal;
 import com.keyin.sprint2.model.Search;
 import com.keyin.sprint2.model.User;
 import com.keyin.sprint2.repository.AnimalRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import java.util.Optional;
 // Front-end webpage routes for the user
 @Controller
 public class MainController {
+    @Autowired
     private AnimalController animalController;
     private AnimalRepo animalRepository;
 
@@ -40,22 +42,15 @@ public class MainController {
         model.addAttribute("search", search);
         List<String> databaseList = Arrays.asList("PgAdmin(SQL)", "MongoDB(NoSQL)", "Both");
         model.addAttribute("databaseList", databaseList);
-        List<Animal> listAnimals = new ArrayList<Animal>();
-        animalRepository.findAll().forEach(listAnimals::add);
-//        List<Animal> listAnimals = null;
-//        try{
-//            listAnimals = animalRepository.findAllAnimals();
-//        }catch(Exception e){
-//            System.out.println(e);
-//        }
-        model.addAttribute("listAnimals", listAnimals);
-        System.out.println("#######" + listAnimals);
         return "search";
     }
 
     @PostMapping(path = "/search")
-    public String submitSearchForm(@ModelAttribute("search")Search search) {
-        System.out.println(search);
+    public String submitSearchForm(@ModelAttribute("search")Search search, Model model) {
+        List<Animal> listAnimals = new ArrayList<Animal>();
+        animalRepository.findByAnimalName(search.getTopic()).forEach(listAnimals::add);
+        model.addAttribute("listAnimals", listAnimals);
+        System.out.println("#######" + listAnimals);
         return "search_results";
     }
 

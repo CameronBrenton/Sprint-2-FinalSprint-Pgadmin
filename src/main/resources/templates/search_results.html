@@ -23,11 +23,11 @@
         </thead>
         <tbody>
             <tr th:each="animal: ${listAnimals}">
-                <td th:text="animal.animal_id">Animal ID</td>
-                <td th:text="animal.animalName">Animal Name</td>
-                <td th:text="animal.animalColor">Animal Color</td>
-                <td th:text="animal.animalOrigin">Animal Origin</td>
-                <td th:text="animal.Species">Animal Species</td>
+                <td th:text="${animal.animal_id}">Animal ID</td>
+                <td th:text="${animal.animalName}">Animal Name</td>
+                <td th:text="${animal.animalColor}">Animal Color</td>
+                <td th:text="${animal.animalOrigin}">Animal Origin</td>
+                <td th:text="${animal.species}">Animal Species</td>
             </tr>
         </tbody>
     </table>

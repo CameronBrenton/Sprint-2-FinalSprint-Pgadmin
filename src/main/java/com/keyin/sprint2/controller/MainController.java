@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,35 +21,33 @@ import java.util.Optional;
 @Controller
 public class MainController {
     @Autowired
-    private AnimalController animalController;
-    @Autowired
     private AnimalRepo animalRepository;
 
     // Get Mappings
-    @GetMapping(path = "/login")
+    @GetMapping(path = "/signin")
     public String getLogInPage() {
 
-        return "logIn";
+        return "signout";
     }
 
-    @GetMapping(path = "/logout")
+    @GetMapping(path = "/signout")
     public String getLogOutPage() {
 
-        return "logout";
+        return "signout";
     }
 
-    // Search
-    @GetMapping(path = "/search")
+    // Search PgAdmin
+    @GetMapping(path = "/searchPgadmin")
     public String showSearchForm(Model model) {
         Search search = new Search();
         model.addAttribute("search", search);
-        List<String> databaseList = Arrays.asList("PgAdmin(SQL)", "MongoDB(NoSQL)", "Both");
-        model.addAttribute("databaseList", databaseList);
+        //List<String> databaseList = Arrays.asList("PgAdmin(SQL)", "MongoDB(NoSQL)", "Both");
+        //model.addAttribute("databaseList", databaseList);
         return "search";
     }
 
     @PostMapping(path = "/search")
-    public String submitSearchForm(@ModelAttribute("search")Search search, Model model) {
+    public String submitSearchFormPgAdmin(@ModelAttribute("search")Search search, Model model) {
         List<Animal> listAnimals = new ArrayList<Animal>();
         animalRepository.findByAnimalName(search.getTopic()).forEach(listAnimals::add);
         model.addAttribute("listAnimals", listAnimals);
@@ -55,19 +55,16 @@ public class MainController {
         return "search_results";
     }
 
-    @GetMapping(path = "/searchtest")
-    public String showSearchFormTest(Model model) {
-        Iterable<Animal> listAnimals = null;
-        try{
-            listAnimals = animalRepository.findAll();
-        }catch(Exception e){
-            System.out.println(e);
-        }
-
-        model.addAttribute("listAnimals", listAnimals);
-        System.out.println("#######" + listAnimals);
-        return "search";
-    }
+//    // Search MongoDB
+//    @GetMapping(path = "/searchMongoDB")
+//    public ModelAndView redirectToSearchFormMongo(ModelMap model) {
+//        Search search = new Search();
+//        model.addAttribute("search", search);
+//        model.addAttribute("attribute", "redirectToSearchFormMongo");
+//        //List<String> databaseList = Arrays.asList("PgAdmin(SQL)", "MongoDB(NoSQL)", "Both");
+//        //model.addAttribute("databaseList", databaseList);
+//        return new ModelAndView("redirect:/localhost:9090/search", model);
+//    }
 
 
     // Signup
@@ -83,19 +80,5 @@ public class MainController {
         System.out.println(user);
         return "signup_success";
     }
-
-    // Results
-    @GetMapping(path = "/results")
-    public String getResultsPage() {
-
-        return "results";
-    }
-
-    // Error
-//    @GetMapping(path = "/error")
-//    public String getErrorPage() {
-//
-//        return "error";
-//    }
 
 }

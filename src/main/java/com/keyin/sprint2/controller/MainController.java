@@ -20,6 +20,7 @@ import java.util.Optional;
 public class MainController {
     @Autowired
     private AnimalController animalController;
+    @Autowired
     private AnimalRepo animalRepository;
 
     // Get Mappings

@@ -19,7 +19,6 @@ public class AnimalController {
 
     @Autowired
     AnimalRepo animalRepository;
-    MainController mainController;
 
     // Get all Animals
     @GetMapping("/animal")

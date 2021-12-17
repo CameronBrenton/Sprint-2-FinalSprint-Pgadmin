@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RepositoryRestResource(collectionResourceRel = "animal", path = "animal")
-public interface AnimalRepo extends PagingAndSortingRepository<Animal, Long> {
+public interface AnimalRepo extends JpaRepository<Animal, Long> {
 
 
         List<Animal> findByAnimalName(@Param("animalName") String animalName);

@@ -1,11 +1,23 @@
 package com.keyin.sprint2.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "users")
 public class User implements Serializable {
-    private String email;
-    private String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
+    @Column(nullable = false, unique = true, length = 45)
+    private String email;
+    @Column(nullable = false, length = 64)
+    private String password;
+    @Column(name = "first_name", nullable = false, length = 20)
+    private String firstName;
+    @Column(name = "last_name", nullable = false, length = 20)
+    private String lastName;
 
     public User(){
 
@@ -14,9 +26,27 @@ public class User implements Serializable {
     public User(String email, String password) {
         this.email = email;
         this.password = password;
+        this.firstName = null;
+        this.lastName = null;
     }
 
-    public String getEmail() {
+
+    public User(String email, String password, String firstName, String lastName) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEmail(){
         return email;
     }
 
@@ -32,10 +62,27 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "email='" + email + '\'' +
+                "id=" + id +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

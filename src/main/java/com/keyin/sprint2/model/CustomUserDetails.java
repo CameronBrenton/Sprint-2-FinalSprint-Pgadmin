@@ -8,10 +8,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class CustomUserDetails implements UserDetails {
     private User user;
 
+    // Parameterized Constructor
     public CustomUserDetails(User user) {
         this.user = user;
     }
 
+    // Getters and Setters
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -47,7 +49,4 @@ public class CustomUserDetails implements UserDetails {
         return true;
     }
 
-    public String getFullName() {
-        return user.getFirstName() + " " + user.getLastName();
-    }
 }

@@ -4,20 +4,16 @@ import com.keyin.sprint2.model.Animal;
 import com.keyin.sprint2.model.Search;
 import com.keyin.sprint2.model.User;
 import com.keyin.sprint2.repository.AnimalRepo;
+import com.keyin.sprint2.repository.SearchRepository;
 import com.keyin.sprint2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 // Front-end webpage routes for the user
 @Controller
@@ -26,13 +22,9 @@ public class MainController {
     private AnimalRepo animalRepo;
     @Autowired
     private UserRepository userRepo;
+    @Autowired
+    private SearchRepository searchRepo;
 
-//    // Get Mappings
-//    @GetMapping(path = "/signin")
-//    public String getLogInPage() {
-//
-//        return "signin";
-//    }
 
     @GetMapping(path = "/signout")
     public String getLogOutPage() {
@@ -56,6 +48,7 @@ public class MainController {
         animalRepo.findByAnimalName(search.getTopic()).forEach(listAnimals::add);
         model.addAttribute("listAnimals", listAnimals);
         System.out.println("#######" + listAnimals);
+        //searchRepo.insertWithEntityManager(new Search(search.getTopic(), search.getDatabase()));
         return "search_results";
     }
 

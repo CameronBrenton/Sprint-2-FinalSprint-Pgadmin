@@ -26,7 +26,7 @@ router.post('/', async function (req, res) {
 	const dataBase = req.body.client
 	console.log(dataBase);
 	if (dataBase === 'postgres'){
-		let search_results = await pool.query("SELECT * FROM mock_data WHERE animalnames ILIKE '%" + search + "%'")
+		let search_results = await pool.query("SELECT * FROM mock_data WHERE animalNames ILIKE '%" + search + "%'")
 		console.log(search_results)
 		res.render('results.njk', {
 			results: search_results.rows.map(result => JSON.stringify(result))
@@ -49,7 +49,7 @@ router.post('/', async function (req, res) {
 
 		let query = req.body.important_string;
 		let search_results_mongo = await client.db("animaldb").collection("animals").find({AnimalName: new RegExp(query)}).toArray()
-		let search_results_pg = await pool.query("SELECT * FROM mock_data WHERE animalnames ILIKE '%" + query + "%'")
+		let search_results_pg = await pool.query("SELECT * FROM mock_data WHERE animalNames I LIKE '%" + query + "%'")
 		console.log(search_results_pg)
 
 		//result = JSON.stringify(result);
@@ -57,7 +57,7 @@ router.post('/', async function (req, res) {
 			return animal.AnimalName;
 		});
 		search_results_pg = search_results_pg.rows.map(function(animal){
-			return animal.animalnames;
+			return animal.animalNames;
 		});
 		res.render('results.njk', {
 			results: search_results_mongo,

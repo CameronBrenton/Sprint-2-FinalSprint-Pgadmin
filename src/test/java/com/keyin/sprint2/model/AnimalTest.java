@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 
 class AnimalTest {
     @Test
-    void testAnimal() {
+    void testConstructor() {
         Animal actualAnimal = new Animal();
         actualAnimal.setAnimalColor("Animal Color");
         actualAnimal.setAnimalName("Animal Name");
         actualAnimal.setAnimalOrigin("Animal Origin");
-        actualAnimal.setAnimal_id(1);
+        actualAnimal.setAnimal_id(1L);
         actualAnimal.setSpecies("Species");
         assertEquals("Animal Color", actualAnimal.getAnimalColor());
         assertEquals("Animal Name", actualAnimal.getAnimalName());
@@ -21,15 +21,40 @@ class AnimalTest {
     }
 
     @Test
-    void testAnimal1() {
-        Animal actualAnimal = new Animal(1L, "Mammals", "Human", "Black", "Africa");
+    void testConstructor2() {
+        Animal actualAnimal = new Animal(1L, "Species", "Animal Name", "Animal Color", "Animal Origin");
 
-        assertEquals(1, actualAnimal.getAnimal_id());
-        assertEquals("Mammals", actualAnimal.getSpecies());
-        assertEquals("Human", actualAnimal.getAnimalName());
-        assertEquals("Black", actualAnimal.getAnimalColor());
-        assertEquals("Africa", actualAnimal.getAnimalOrigin());
+        assertEquals("Animal Color", actualAnimal.getAnimalColor());
+        assertEquals("Species", actualAnimal.getSpecies());
+        assertEquals(1L, actualAnimal.getAnimal_id());
+        assertEquals("Animal Origin", actualAnimal.getAnimalOrigin());
+        assertEquals("Animal Name", actualAnimal.getAnimalName());
+    }
 
+    @Test
+    void testConstructor3() {
+        Animal actualAnimal = new Animal();
+        actualAnimal.setAnimalColor("Animal Color");
+        actualAnimal.setAnimalName("Animal Name");
+        actualAnimal.setAnimalOrigin("Animal Origin");
+        actualAnimal.setAnimal_id(1L);
+        actualAnimal.setSpecies("Species");
+        assertEquals("Animal Color", actualAnimal.getAnimalColor());
+        assertEquals("Animal Name", actualAnimal.getAnimalName());
+        assertEquals("Animal Origin", actualAnimal.getAnimalOrigin());
+        assertEquals(1L, actualAnimal.getAnimal_id());
+        assertEquals("Species", actualAnimal.getSpecies());
+    }
+
+    @Test
+    void testConstructor4() {
+        Animal actualAnimal = new Animal(1L, "Species", "Animal Name", "Animal Color", "Animal Origin");
+
+        assertEquals("Animal Color", actualAnimal.getAnimalColor());
+        assertEquals("Species", actualAnimal.getSpecies());
+        assertEquals(1L, actualAnimal.getAnimal_id());
+        assertEquals("Animal Origin", actualAnimal.getAnimalOrigin());
+        assertEquals("Animal Name", actualAnimal.getAnimalName());
     }
 }
 

@@ -1,3 +1,5 @@
+// This is the MainController class
+
 package com.keyin.sprint2.controller;
 
 import com.keyin.sprint2.model.Animal;
@@ -25,14 +27,14 @@ public class MainController {
     @Autowired
     private SearchRepository searchRepo;
 
-
+    // Signout path
     @GetMapping(path = "/signout")
     public String getLogOutPage() {
 
         return "signout";
     }
 
-    // Search PgAdmin
+    // Search PgAdmin path
     @GetMapping(path = "/searchPgadmin")
     public String showSearchForm(Model model) {
         Search search = new Search();
@@ -42,6 +44,7 @@ public class MainController {
         return "search";
     }
 
+    // search path
     @PostMapping(path = "/search")
     public String submitSearchFormPgAdmin(@ModelAttribute("search")Search search, Model model) {
         List<Animal> listAnimals = new ArrayList<Animal>();
@@ -53,7 +56,7 @@ public class MainController {
     }
 
 
-    // Signup
+    // Signup path
     @GetMapping(path = "/signup")
     public String showSignupForm(Model model) {
         User user = new User();
@@ -61,6 +64,7 @@ public class MainController {
         return "signup";
     }
 
+    // Signup path
     @PostMapping(path = "/signup")
     public String submitSignupForm(@ModelAttribute("user")User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -71,7 +75,7 @@ public class MainController {
         return "signup_success";
     }
 
-    // Users
+    // Users path
     @GetMapping("/users")
     public String listUsers(Model model) {
         List<User> listUsers = userRepo.findAll();

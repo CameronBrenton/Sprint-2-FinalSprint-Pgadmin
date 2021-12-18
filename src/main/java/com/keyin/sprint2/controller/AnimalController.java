@@ -1,11 +1,11 @@
-package com.keyin.sprint2.controller;
+// This is the AnimalController
 
+package com.keyin.sprint2.controller;
 import com.keyin.sprint2.model.Animal;
 import com.keyin.sprint2.repository.AnimalRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -42,6 +42,7 @@ public class AnimalController {
         }
     }
 
+    // Get animal by id
     @GetMapping("/animal/{animal_id}")
     public ResponseEntity<Animal> getAnimalsByAnimal_Id(@PathVariable("animal_id") long animal_id) {
         Optional<Animal> animalData = animalRepository.findById(animal_id);
@@ -53,6 +54,7 @@ public class AnimalController {
     }
 
 
+    // Post animal
     @PostMapping("/animal")
     public ResponseEntity<Animal> createAnimals(@RequestBody Animal animal) {
         try {
@@ -66,6 +68,7 @@ public class AnimalController {
         }
     }
 
+    // Update animal by id
     @PutMapping("/animal/{animal_id}")
     public ResponseEntity<Animal> updateAnimal(@PathVariable("animal_id") long animal_id, @RequestBody Animal animal) {
         Optional<Animal> animalData = animalRepository.findById(animal_id);
@@ -81,6 +84,7 @@ public class AnimalController {
         } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    // Delete animal by id
     @DeleteMapping("/Animal/{animal_id}")
     public ResponseEntity<HttpStatus> deleteAnimal(@PathVariable("animal_id") long animal_id) {
         try {

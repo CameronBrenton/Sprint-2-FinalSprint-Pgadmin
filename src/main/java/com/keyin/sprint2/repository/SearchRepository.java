@@ -1,8 +1,8 @@
-package com.keyin.sprint2.repository;
+// This is the SearchRepository class
 
+package com.keyin.sprint2.repository;
 import com.keyin.sprint2.model.Search;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -13,6 +13,7 @@ public class SearchRepository {
     private EntityManager entityManager;
 
 
+    // Insert into databse
     @Transactional
     public void insertWithQuery(Search search) {
         entityManager.createNativeQuery("INSERT INTO search (id, topic, database) VALUES (?,?,?)")

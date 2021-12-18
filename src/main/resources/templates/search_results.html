@@ -6,6 +6,7 @@
     <title>Sign Up</title>
 </head>
 <body>
+//results of searching
 <div align="center">
     <h1>Search Results</h1>
     <span>Database: Pgadmin</span><span th:text="${search.database}"></span></br>
@@ -22,6 +23,7 @@
             </tr>
         </thead>
         <tbody>
+        //table that displays results
             <tr th:each="animal: ${listAnimals}">
                 <td th:text="${animal.animal_id}">Animal ID</td>
                 <td th:text="${animal.animalName}">Animal Name</td>

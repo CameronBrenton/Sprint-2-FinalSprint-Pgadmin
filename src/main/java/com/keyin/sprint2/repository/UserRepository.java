@@ -1,5 +1,6 @@
-package com.keyin.sprint2.repository;
+// User Repository class
 
+package com.keyin.sprint2.repository;
 import com.keyin.sprint2.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -28,9 +28,5 @@ class CustomUserDetailsTest {
                 (new CustomUserDetails(new User("jane.doe@example.org", "iloveyou"))).getUsername());
     }
 
-    @Test
-    void testGetFullName() {
-        assertEquals("null null", (new CustomUserDetails(new User("jane.doe@example.org", "iloveyou"))).getFullName());
-    }
 }
 
